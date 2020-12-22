@@ -1,0 +1,42 @@
+<html>
+
+<head>
+	<title>Patient Management Application</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+function validateForm() {
+  alert("account has been deleted!!");
+  return true;
+}
+  </script>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Patient Management System</a>
+    </div>
+    <ul class="nav navbar-nav">
+         <li class="active"><a th:href="@{/Home}">Home</a></li>
+     <li ><a th:href="@{/ViewDoctors}">Book Doctor Appointment</a></li>
+	   <li><a th:href="@{/ViewAllAppointments}">View/Edit  Appointments</a></li>
+    <li><a  th:href="@{/Login}">Logout</a></li>
+     <li><a th:href="@{/UpdatePatient}">Update Account</a></li>
+	   <li><a th:href="@{/DeleteAccount}">Delete Account</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+<h1>Are you sure you want to delete the account?</h1>
+<form class="form-inline" th:action="@{/DeleteAccount/} + ${session.patient.id}" method="post" name="myForm" onsubmit="return validateForm()">
+	    <button type="delete Account" class="btn btn-danger">Delete Account</button>
+</form>
+</div>
+
+</body>
+
+</html>

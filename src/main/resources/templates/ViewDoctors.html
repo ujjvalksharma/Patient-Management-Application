@@ -1,0 +1,54 @@
+<html>
+
+<head>
+	<title>Patient Management Application</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Patient Management System</a>
+    </div>
+    <ul class="nav navbar-nav">
+         <li class="active"><a th:href="@{/Home}">Home</a></li>
+     <li ><a th:href="@{/ViewDoctors}">Book Doctor Appointment</a></li>
+	   <li><a th:href="@{/ViewAllAppointments}">View/Edit  Appointments</a></li>
+    <li><a  th:href="@{/Login}">Logout</a></li>
+     <li><a th:href="@{/UpdatePatient}">Update Account</a></li>
+	   <li><a th:href="@{/DeleteAccount}">Delete Account</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<h1> Enter any search criteria</h1>
+	<form class="form-inline" action="#" target="_blank" th:action="@{/ViewDoctorsResult}" th:object="${doctorSearchCriteria}" method="post">
+   <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+  </div>
+<br/>
+     <div class="form-group">
+    <label for="firstName">Last Name:</label>
+    <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+  </div>
+<br/>
+   <div class="form-group">
+    <label for="firstName">Doctor Id:</label>
+    <input type="text" class="form-control" id="doctorId" th:field="*{doctorId}">
+  </div>
+<br/>
+    <div class="form-group">
+    <label for="firstName">Department Id:</label>
+    <input type="text" class="form-control" id="departmentId" th:field="*{departmentId}">
+  </div>
+  <br />
+    <button type="submit" class="btn btn-success">Submit</button></form>
+</div>
+
+</body>
+
+</html>

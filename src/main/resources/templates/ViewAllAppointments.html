@@ -1,0 +1,96 @@
+<html>
+
+<head>
+	<title>Patient Management Application</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+function validateForm1() {
+alert("Your appointment is deleted");
+return true;
+}
+
+function validateForm2() {
+alert("Your payment is confirmed!!");
+return true;
+}
+
+</script> 
+<style>
+  #s1,#s2,#s3{display: inline-block;}
+</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Patient Management System</a>
+    </div>
+    <ul class="nav navbar-nav">
+         <li class="active"><a th:href="@{/Home}">Home</a></li>
+     <li ><a th:href="@{/ViewDoctors}">Book Doctor Appointment</a></li>
+	   <li><a th:href="@{/ViewAllAppointments}">View/Edit  Appointments</a></li>
+    <li><a  th:href="@{/Login}">Logout</a></li>
+     <li><a th:href="@{/UpdatePatient}">Update Account</a></li>
+	   <li><a th:href="@{/DeleteAccount}">Delete Account</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+
+  <h1>Below are your All appointments</h1>
+
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Appointment Id</th>
+        <th>Doctor Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+		<th>Email</th>
+    <th>Status</th>
+    <th>date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="appointment : ${appointments}">
+        <td th:text="${appointment.appointmentId}"></td>
+        <td th:text="${appointment.doctor.id}"></td> 
+        <td th:text="${appointment.doctor.firstName}"></td> 
+         <td th:text="${appointment.doctor.lastName}"></td> 
+			 <td th:text="${appointment.doctor.email}"></td> 
+			 <div th:switch="${appointment.status}">
+   <td id="s1" th:case="'Pending'">Pending
+
+<form class="form-inline" th:action="@{/DeleteAppointment/}+${appointment.appointmentId}" name="myForm" onsubmit="return validateForm1()" method="post">
+   
+    <button id="s1" type="submit" class="btn btn-danger">Delete</button>
+    </form>
+
+    <form class="form-inline" th:action="@{/EditAppointmentTime/}+${appointment.appointmentId}" name="myForm" method="get">
+   
+    <button id="s2" type="submit" class="btn btn-primary">Edit</button>
+    </form>
+
+    <form class="form-inline" th:action="@{/Payment/}+${appointment.appointmentId}" name="myForm" onsubmit="return validateForm2()" method="post">
+   
+    <button id="s3" type="submit" class="btn btn-success">Payment</button>
+    </form>
+          </td> 
+  <td th:case="'Completed'">Confirmed</td> 
+   <td th:case="*">Pending</td> 
+     <td th:text="${appointment.date}"></td>
+</div>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+
+</html>

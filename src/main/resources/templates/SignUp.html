@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script>
+function validateForm() {
+  var firstName = document.forms["myForm"]["firstName"].value;
+  if (firstName == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+
+   var lastName = document.forms["myForm"]["lastName"].value;
+  if (lastName == "") {
+    alert("lastName must be filled out");
+    return false;
+  }
+
+   var email = document.forms["myForm"]["email"].value;
+  if (email == "") {
+    alert("email must be filled out");
+    return false;
+  }
+
+   if (email.includes("@")!=true) {
+    alert("email should have @");
+    return false;
+  }
+
+   if (email.includes(".")!=true) {
+    alert("email should have .");
+    return false;
+  }
+   var password = document.forms["myForm"]["password"].value;
+  if (password == "") {
+    alert("password must be filled out");
+    return false;
+  }
+
+   if (password.length<5) {
+    alert("minimum password length should be 5");
+    return false;
+  }
+  return true;
+}
+</script>
+
+</head>
+<body>
+    <div class="alert alert-danger alert-dismissible" id="errors" th:if="${(param.error != null) and (param.error[0] == 'true')}">
+      <strong>SignUp Failed!</strong> This email has beeen used!! Try a new email.
+</div>
+
+  <center><h4>Sign Up</h4></center>
+  <div class="well">
+	<form class="form-inline" th:action="@{/Login}" name="myForm" th:object="${patient}" onsubmit="return validateForm()" method="post">
+   <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}">
+  </div>
+ <br/>
+
+   <div class="form-group">
+    <label  for="lastName"  >Last Name:</label>
+    <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}">
+  </div>
+ <br/>
+      <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email" name="email" th:field="*{email}">
+  </div>
+ <br/>
+    <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" name="password" th:field="*{password}">
+  </div>
+   <br/>
+   <center> <button type="submit" class="btn btn-success">Submit</button> </center> 
+</form>
+</div>
+</body>
+</html>

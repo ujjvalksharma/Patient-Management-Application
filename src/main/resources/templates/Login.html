@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+function validateForm() {
+   var email = document.forms["myForm"]["email"].value;
+  if (email == "") {
+    alert("email must be filled out");
+    return false;
+  }
+
+   if (email.includes("@")!=true) {
+    alert("email should have @");
+    return false;
+  }
+
+   if (email.includes(".")!=true) {
+    alert("email should have .");
+    return false;
+  }
+   var password = document.forms["myForm"]["password"].value;
+  if (password == "") {
+    alert("password must be filled out");
+    return false;
+  }
+
+    if (password.length<5) {
+    alert("password minimum length is 5");
+    return false;
+  }
+  return true;
+}
+</script>
+
+</head>
+<body>
+  <div class="alert alert-danger alert-dismissible" id="errors" th:if="${(param.error != null) and (param.error[0] == 'true')}">
+      <strong>Login Failed!</strong> Your email and password doesn't match!!
+</div>
+  <div class="alert alert-success alert-dismissible" id="errors" th:if="${(param.error != null) and (param.error[0] == 'false')}">
+      <strong>Sign Up Complete!</strong> Please login!
+</div>
+    <h4>Login</h4>
+      <div class="well">
+<form class="form-inline" action="#" name="myForm"  onsubmit="return validateForm()" th:action="@{/Home}" th:object="${patient}" method="post">
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" name="email" id="email" th:field="*{email}">
+  </div>
+<br/>
+ <br/>
+    <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" name="password" id="password" th:field="*{password}">
+  </div>
+   <br/>
+    <center><button type="submit" class="btn btn-success">Submit</button></center> 
+  </form>
+  </div>
+</body>
+</html>

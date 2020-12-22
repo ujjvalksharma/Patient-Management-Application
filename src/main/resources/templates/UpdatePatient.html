@@ -1,0 +1,50 @@
+<html>
+
+<head>
+	<title>Patient Management Application</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Patient Management System</a>
+    </div>
+    <ul class="nav navbar-nav">
+         <li class="active"><a th:href="@{/Home}">Home</a></li>
+     <li ><a th:href="@{/ViewDoctors}">Book Doctor Appointment</a></li>
+	   <li><a th:href="@{/ViewAllAppointments}">View/Edit  Appointments</a></li>
+    <li><a  th:href="@{/Login}">Logout</a></li>
+     <li><a th:href="@{/UpdatePatient}">Update Account</a></li>
+	   <li><a th:href="@{/DeleteAccount}">Delete Account</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+<h1> Update any field for the user</h1>
+<form class="form-inline" action="#" th:action="@{/UpdatePatient/} + ${session.patient.id}" th:object="${patient}" method="post">
+   <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="text" class="form-control" id="firstName" th:field="*{firstName}" th:placeholder="${session.patient.firstName}">
+  </div>
+
+
+   <div class="form-group">
+    <label  for="lastName"  >Last Name:</label>
+    <input type="text" class="form-control" id="lastName" th:field="*{lastName}" th:placeholder="${session.patient.lastName}">
+  </div>
+
+    <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" th:field="*{password}">
+  </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+</div>
+</body>
+
+</html>

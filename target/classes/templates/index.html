@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <centre><h4>Welcome to Patient Management Application</h4></centre>
+  <br>
+ <div class="well">
+   <h4>Please login to see your doctor's appointment.</h4>
+    <br />
+   <form method="get" th:action="@{/SignUp}">
+  <center> <button type="submit" class="btn btn-primary ">SignUp</button></center> 
+</form>
+<br/>
+  <form method="get" th:action="@{/Login}">
+   <center>  <button type="submit" class="btn btn-success">Login</button> </center>
+</form>
+
+</div>
+</body>
+</html>

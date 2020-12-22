@@ -1,0 +1,51 @@
+<html>
+
+<head>
+	<title>Patient Management Application</title>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+function validateForm1() {
+   var date = document.forms["myForm"]["date"].value;
+  if (date == "") {
+    alert("date must be filled out");
+    return false;
+  }
+  return true;
+
+  }
+</script>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Patient Management System</a>
+    </div>
+    <ul class="nav navbar-nav">
+         <li class="active"><a th:href="@{/Home}">Home</a></li>
+     <li ><a th:href="@{/ViewDoctors}">Book Doctor Appointment</a></li>
+	   <li><a th:href="@{/ViewAllAppointments}">View/Edit  Appointments</a></li>
+    <li><a  th:href="@{/Login}">Logout</a></li>
+     <li><a th:href="@{/UpdatePatient}">Update Account</a></li>
+	   <li><a th:href="@{/DeleteAccount}">Delete Account</a></li>
+    </ul>
+  </div>
+</nav>
+  <div class="alert alert-danger alert-dismissible" id="errors" th:if="${(param.editApp != null) and (param.editApp[0] == 'false')}">
+      <strong>Edit Appointment failed</strong> An appointment is present at this date!!
+</div>  
+<div class="container">
+
+  <form th:action="@{/EditAppointmentTime/}+${appointmentId}" th:object="${appointment}" method="post" name="myForm" onsubmit="return validateForm1()" >
+  <label for="date">new date of appointment:</label>
+  <input type="date" id="date" name="date" th:field="*{date}">
+ <button type="submit" class="btn btn-success">Submit</button>
+</form>
+</div>
+
+</body>
+
+</html>
