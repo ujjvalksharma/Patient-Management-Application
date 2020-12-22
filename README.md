@@ -1,5 +1,5 @@
 # Patient-Management-Application
-This is a Patient Management Application in which a patient can create/update/delete their appointments with and update their profile in the system.
+This is a Patient Management Application in which a patient can create/update/delete their appointments with a doctor and update their profile in the system.
 
 #What is the needed in to run the project?
 In this project, we are making a patient application system where we are building the application front end using HTML, CSS, and thymeleaf. In addition to that, the backend is build using java's pring framework with databases being Redis and MySQL. To avoid installing dependencies/various jar files we are using maven to build the project. All the libraries and software needed to build the project is mentioned below:
